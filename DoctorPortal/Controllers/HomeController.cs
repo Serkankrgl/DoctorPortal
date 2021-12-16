@@ -1,4 +1,5 @@
 ﻿using DoctorPortal.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -8,7 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace DoctorPortal.Controllers
-{
+{   [Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
