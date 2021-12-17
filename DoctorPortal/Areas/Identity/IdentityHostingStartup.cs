@@ -1,6 +1,7 @@
 ﻿using System;
 using DoctorPortal.Areas.Identity.Data;
 using DoctorPortal.Data;
+using DoctorPortal.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
@@ -16,17 +17,24 @@ namespace DoctorPortal.Areas.Identity
         public void Configure(IWebHostBuilder builder)
         {
             builder.ConfigureServices((context, services) => {
-                services.AddDbContext<AuthDbContext>(options =>
+                services.AddDbContext<ApplicationDbContext>(options =>
                     options.UseSqlServer(
                         context.Configuration.GetConnectionString("AuthDbContextConnection")));
 
-                services.AddDefaultIdentity<ApplicationUser>(options => {
+                services.AddIdentity<ApplicationUser,IdentityRole>(options => {
                     options.Password.RequireLowercase = false;
                     options.Password.RequireUppercase = false;
                     options.SignIn.RequireConfirmedAccount = false;
                 })
-                    .AddEntityFrameworkStores<AuthDbContext>();
+               .AddDefaultTokenProviders()
+               .AddDefaultUI()
+                .AddEntityFrameworkStores<ApplicationDbContext>();
+
+
             });
+
+            
+
         }
     }
 }
