@@ -5,22 +5,16 @@
 @{ 
     var myUser = (await UserManager.GetUserAsync(User));
 }
-<ul class="navbar-nav">
     @if (SignInManager.IsSignedIn(User))
     {
         if (myUser.Email == "admin@gmail.com")
         {
-            <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="Identity" asp-page="/Views/Manage/Index" title="Manage">Admin Paneli</a>
+            <li >
+                <a  asp-area="Identity" asp-page="/Views/Manage/Index" title="Manage">
+                    <i class="fas fa-users-cog"></i>
+                    <p>Admin Paneli</p>
+                </a>
             </li>
         }
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">@myUser.Name @myUser.Surname</a>
-        </li>
-        <li class="nav-item">
-            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                <button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
-            </form>
-        </li>
+
     }
-</ul>
