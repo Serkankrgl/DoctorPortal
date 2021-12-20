@@ -1,20 +1,81 @@
 ﻿@using Microsoft.AspNetCore.Identity
-@using DoctorPortal.Areas.Identity.Data
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
-@{ 
-    var myUser = (await UserManager.GetUserAsync(User));
+@{
+    ApplicationUser myUser = (await UserManager.GetUserAsync(User));
+    
 }
-    @if (SignInManager.IsSignedIn(User))
-    {
-        if (myUser.Email == "admin@gmail.com")
-        {
-            <li >
-                <a  asp-area="Identity" asp-page="/Views/Manage/Index" title="Manage">
-                    <i class="fas fa-users-cog"></i>
-                    <p>Admin Paneli</p>
-                </a>
-            </li>
-        }
+@if (SignInManager.IsSignedIn(User))
+{
+    
 
+        if (User.IsInRole("Admin"))
+        {
+        <li class="active ">
+            <a asp-area="Patient" asp-controller="Profile" asp-action="Index">
+                <i class="far fa-user"></i>
+                <p>Profil</p>
+            </a>
+        </li>
+        <li>
+            <a href="./icons.html">
+                <i class="far fa-calendar-check"></i>
+                <p>Randevular</p>
+            </a>
+        </li>
+        <li>
+            <a href="./map.html">
+                <i class="fas fa-prescription-bottle"></i>
+                <p>Reçeteler</p>
+            </a>
+        </li>
+        <li>
+            <a asp-area="Identity" asp-page="/Views/Manage/Index" title="Manage">
+                <i class="fas fa-users-cog"></i>
+                <p>Admin Paneli</p>
+            </a>
+        </li>
     }
+    if (User.IsInRole("Patient"))
+    {
+        <li class="active ">
+            <a asp-area="Patient" asp-controller="Profile" asp-action="Index">
+                <i class="far fa-user"></i>
+                <p>Profil</p>
+            </a>
+        </li>
+        <li>
+            <a href="./icons.html">
+                <i class="far fa-calendar-check"></i>
+                <p>Randevular</p>
+            </a>
+        </li>
+        <li>
+            <a href="./map.html">
+                <i class="fas fa-prescription-bottle"></i>
+                <p>Reçeteler</p>
+            </a>
+        </li>
+    }
+    if (User.IsInRole("Doctor"))
+    {
+        <li class="active ">
+            <a asp-area="Doctor" asp-controller="Profile" asp-action="Index">
+                <i class="far fa-user"></i>
+                <p>Profil</p>
+            </a>
+        </li>
+        <li>
+            <a href="./icons.html">
+                <i class="far fa-calendar-check"></i>
+                <p>Randevular</p>
+            </a>
+        </li>
+        <li>
+            <a href="./map.html">
+                <i class="fas fa-prescription-bottle"></i>
+                <p>Reçeteler</p>
+            </a>
+        </li>
+    }
+}

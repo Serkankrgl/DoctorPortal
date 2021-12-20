@@ -1,5 +1,4 @@
-﻿using System;
-using DoctorPortal.Areas.Identity.Data;
+﻿
 using DoctorPortal.Data;
 using DoctorPortal.Models;
 using Microsoft.AspNetCore.Hosting;

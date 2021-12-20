@@ -63,6 +63,7 @@ namespace DoctorPortal
             dbInitializer.Initialize();
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllerRoute("areas", "{area:exists}/{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");

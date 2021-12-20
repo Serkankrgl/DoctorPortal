@@ -12,7 +12,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using DoctorPortal.Models;
-using DoctorPortal.Areas.Identity.Data;
 
 namespace DoctorPortal.Areas.Identity.Pages.Account
 {
