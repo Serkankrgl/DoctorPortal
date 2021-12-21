@@ -10,7 +10,8 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace DoctorPortal.Controllers
-{   [Authorize]
+{   
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -38,19 +39,7 @@ namespace DoctorPortal.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     
-        [HttpPost]
-        public void SharePost()
-        {
-            Post p = new Post();
-            var username = HttpContext.Request.Form["content"].ToString();
-            Console.WriteLine(username);
 
-        }
-
-        public IActionResult Post()
-        {
-            return View();
-        }
     
     }
 }

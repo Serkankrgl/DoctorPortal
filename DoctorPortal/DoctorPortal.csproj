@@ -7,6 +7,29 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Areas\Admin\**" />
+    <Compile Remove="Areas\Doctor\**" />
+    <Compile Remove="Areas\Patient\Data\**" />
+    <Compile Remove="Areas\Patient\Models\**" />
+    <Compile Remove="Migrations\ApplicationDb\**" />
+    <Content Remove="Areas\Admin\**" />
+    <Content Remove="Areas\Doctor\**" />
+    <Content Remove="Areas\Patient\Data\**" />
+    <Content Remove="Areas\Patient\Models\**" />
+    <Content Remove="Migrations\ApplicationDb\**" />
+    <EmbeddedResource Remove="Areas\Admin\**" />
+    <EmbeddedResource Remove="Areas\Doctor\**" />
+    <EmbeddedResource Remove="Areas\Patient\Data\**" />
+    <EmbeddedResource Remove="Areas\Patient\Models\**" />
+    <EmbeddedResource Remove="Migrations\ApplicationDb\**" />
+    <None Remove="Areas\Admin\**" />
+    <None Remove="Areas\Doctor\**" />
+    <None Remove="Areas\Patient\Data\**" />
+    <None Remove="Areas\Patient\Models\**" />
+    <None Remove="Migrations\ApplicationDb\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="5.0.13" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.12" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="5.0.12" />
@@ -17,14 +40,6 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Areas\Admin\" />
-    <Folder Include="Areas\Doctor\" />
-    <Folder Include="Areas\Patient\Data\" />
-    <Folder Include="Areas\Patient\Models\" />
-    <Folder Include="Migrations\ApplicationDb\" />
   </ItemGroup>
 
 </Project>

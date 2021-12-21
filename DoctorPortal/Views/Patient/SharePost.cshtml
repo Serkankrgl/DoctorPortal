@@ -1,0 +1,13 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model Speciality 
+
+<form method="post" asp-controller="Patient" asp-action="SharePost">
+    <div class="form-group">
+        <label asp-for="SpecialityId"></label>
+        <select class="form-control" asp-for="SpecialityId" asp-items="@(new SelectList((List<Speciality>)ViewBag.Specialities,nameof(Speciality.SpecialityId),nameof(Speciality.SpecialityName)))"></select>
+        <span asp-validation-for="SpecialityId" class="text-danger"></span>
+    </div>
+    <button type="submit">Share Post</button>
+</form>
