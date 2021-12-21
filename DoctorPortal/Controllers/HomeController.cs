@@ -1,5 +1,6 @@
 ﻿using DoctorPortal.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -37,7 +38,16 @@ namespace DoctorPortal.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     
-        public IActionResult SharePost()
+        [HttpPost]
+        public void SharePost()
+        {
+            Post p = new Post();
+            var username = HttpContext.Request.Form["content"].ToString();
+            Console.WriteLine(username);
+
+        }
+
+        public IActionResult Post()
         {
             return View();
         }

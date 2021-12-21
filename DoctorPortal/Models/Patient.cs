@@ -19,5 +19,7 @@ namespace DoctorPortal.Models
         public ICollection<Prescription> Prescriptions { get; set; }
         public ICollection<Appointment> Appointments { get; set; }
         public ICollection<Post> Posts { get; set; }
+
+
     }
 }
