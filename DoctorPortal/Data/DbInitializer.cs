@@ -1,5 +1,4 @@
-﻿using DoctorPortal.Areas.Identity.Data;
-using DoctorPortal.Models;
+﻿using DoctorPortal.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;

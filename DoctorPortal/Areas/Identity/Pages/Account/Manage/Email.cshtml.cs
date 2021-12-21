@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
-using DoctorPortal.Areas.Identity.Data;
+using DoctorPortal.Models;
 
 namespace DoctorPortal.Areas.Identity.Pages.Account.Manage
 {

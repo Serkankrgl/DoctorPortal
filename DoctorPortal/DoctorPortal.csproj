@@ -20,14 +20,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Admin\Controllers\" />
-    <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="Areas\Admin\Views\" />
+    <Folder Include="Areas\Admin\" />
     <Folder Include="Areas\Doctor\" />
     <Folder Include="Areas\Patient\Data\" />
     <Folder Include="Areas\Patient\Models\" />
-    <Folder Include="Areas\Patient\Views\" />
     <Folder Include="Migrations\ApplicationDb\" />
   </ItemGroup>
 
