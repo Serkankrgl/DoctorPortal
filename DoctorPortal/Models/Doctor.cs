@@ -21,5 +21,10 @@ namespace DoctorPortal.Models
         public string UPIN { get; set; }
         public ICollection<Prescription> Prescriptions { get; set; }
         public ICollection<Appointment> Appointments { get; set; }
+
+        public string GetFulName()
+        {
+            return User.Name.ToString() + " " + User.Surname.ToString();
+        }
     }
 }

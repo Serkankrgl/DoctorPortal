@@ -1,0 +1,28 @@
+﻿@model DoctorPortal.Models.Appointment
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <form asp-controller="Patient" asp-action="CreateAppointment" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Description"></label>
+                <textarea asp-for="Description" class="form-control"></textarea>
+            </div>
+            <div class="form-group">
+                <label asp-for="AppointmentDate"></label>
+                <input asp-for="AppointmentDate" class="form-control" />
+                <span asp-validation-for="AppointmentDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DoctorId"></label>
+                <select class="form-control" asp-for="DoctorId" asp-items="@(new SelectList(ViewBag.Doctors,"Value", "Text"))"></select>
+                <span asp-validation-for="DoctorId" class="text-danger"></span>
+            </div>
+            <button id="update-profile-button" type="submit" class="btn btn-primary">Save</button>
+        </form>
+    </div>
+</div>

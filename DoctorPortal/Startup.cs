@@ -36,6 +36,15 @@ namespace DoctorPortal
             services.AddControllersWithViews();
 
             services.AddScoped<IDbInitializer, DbInitializer>();
+
+            services.AddDistributedMemoryCache();
+
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(10);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -59,7 +68,7 @@ namespace DoctorPortal
             app.UseAuthentication();
             app.UseAuthorization();
 
-            
+            app.UseSession();
             dbInitializer.Initialize();
             app.UseEndpoints(endpoints =>
             {
