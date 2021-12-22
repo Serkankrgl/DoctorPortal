@@ -1,9 +1,11 @@
 ﻿@page
 @model LoginModel
 
-@{ViewData["Title"] = "Login";}
 
-
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Areas/Identity/Pages/_AuthLayout.cshtml";
+}
 
 <div class="col-md-10 offset-1">
     <div class="login-form-icon">
@@ -46,6 +48,7 @@
         </div>
     </form>
 </div>
+
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial"></partial>

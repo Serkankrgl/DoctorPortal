@@ -1,0 +1,19 @@
+﻿@model DoctorPortal.Models.Speciality
+@{
+    ViewData["Title"] = "CreateSpeciality";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <form asp-controller="Admin" asp-action="CreateSpeciality" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="SpecialityName"></label>
+                <input asp-for="SpecialityName" class="form-control"/>
+            </div>
+
+            <button id="update-profile-button" type="submit" class="btn btn-primary">Save</button>
+        </form>
+    </div>
+</div>
