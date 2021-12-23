@@ -3,14 +3,14 @@
 @inject UserManager<ApplicationUser> UserManager
 @{
     ApplicationUser myUser = (await UserManager.GetUserAsync(User));
-    
+
 }
 @if (SignInManager.IsSignedIn(User))
 {
-    
 
-        if (User.IsInRole("Admin"))
-        {
+
+    if (User.IsInRole("Admin"))
+    {
         <li class="active ">
             <a asp-area="Patient" asp-controller="Profile" asp-action="Index">
                 <i class="far fa-user"></i>
@@ -35,6 +35,12 @@
                 <p>Admin Paneli</p>
             </a>
         </li>
+        <li>
+            <a asp-area="" asp-controller="Admin" asp-action="CreateSpeciality">
+                <i class="fas fa-prescription-bottle"></i>
+                <p>Branş Ekle</p>
+            </a>
+        </li>
     }
     if (User.IsInRole("Patient"))
     {
@@ -45,7 +51,7 @@
             </a>
         </li>
         <li>
-            <a href="./icons.html">
+            <a asp-area="" asp-controller="Patient" asp-action="CreateAppointment">
                 <i class="far fa-calendar-check"></i>
                 <p>Randevular</p>
             </a>
@@ -56,6 +62,7 @@
                 <p>Reçeteler</p>
             </a>
         </li>
+
     }
     if (User.IsInRole("Doctor"))
     {
