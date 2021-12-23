@@ -8,8 +8,10 @@
         <label asp-for="SpecialityId"></label>
         <select class="form-control" asp-for="SpecialityId" asp-items="@(new SelectList((List<Speciality>)ViewBag.Specialities,nameof(Speciality.SpecialityId),nameof(Speciality.SpecialityName)))"></select>
         <span asp-validation-for="SpecialityId" class="text-danger"></span>
-        <label for="Content">Name</label>
-        <input id="Content" />
+    </div>
+    <div class="form-group">
+        <label for="PostContent">Content</label>
+        <input class="form-control" id="PostContent" name="PostContent" />
     </div>
     <button type="submit">Share Post</button>
 </form>

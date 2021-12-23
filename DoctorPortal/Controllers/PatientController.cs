@@ -19,8 +19,8 @@ namespace DoctorPortal.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
-        public PatientController(ApplicationDbContext context,
-                                UserManager<ApplicationUser> userManager)
+
+        public PatientController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
             _userManager = userManager;
@@ -43,6 +43,7 @@ namespace DoctorPortal.Controllers
             Console.WriteLine("GIRDI");
             if (ModelState.IsValid)
             {
+                post.PatientId = _userManager.GetUserId(HttpContext.User);
                 _context.Add(post);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
