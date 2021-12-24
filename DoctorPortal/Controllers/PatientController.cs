@@ -54,6 +54,12 @@ namespace DoctorPortal.Controllers
             }
         }
 
+        public IActionResult ShowPost()
+        {
+            SetViewBag();
+            return View();
+        }
+
 
         public void SetViewBag()
         {
