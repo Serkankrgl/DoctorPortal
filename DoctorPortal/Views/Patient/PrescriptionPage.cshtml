@@ -1,0 +1,38 @@
+﻿@model List<DoctorPortal.Models.Prescription>
+@{
+    ViewData["Title"] = "PrescriptionPage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>PrescriptionPage</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Doktor Adı</th>
+            <th>Uzmanlık Alanı</th>
+            <th>Reçete İçeriği</th>
+            <th>Reçete Geçerlilik bitiş Tarihi</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @item.Doctor.User.GetFulName()
+            </td>
+            <td>
+                @item.Doctor.Speciality.SpecialityName
+            </td>
+            <td>
+                @item.PrescriptionContent
+            </td>
+            <td>
+                @item.EffOutDate
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
