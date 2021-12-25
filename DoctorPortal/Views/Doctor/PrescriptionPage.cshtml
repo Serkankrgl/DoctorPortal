@@ -1,0 +1,40 @@
+﻿@model List<DoctorPortal.Models.Prescription>
+@{
+    ViewData["Title"] = "PrescriptionPage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>PrescriptionPage</h1>
+
+<p>
+    <a asp-action="CreatePrescription">Reçete oluştur.</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Hasta Adı</th>
+            <th>Reçete İçeriği</th>
+            <th>Reçete Geçerlilik bitiş Tarihi</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @item.Patient.User.GetFulName()
+            </td>
+            <td>
+                @item.PrescriptionContent
+            </td>
+            <td>
+                @item.EffOutDate
+            </td>
+            <td>
+                <a asp-action="EditPrescription" asp-route-id="@item.PrescriptionId">Edit</a> | 
+                <a asp-action="DeletePrescription" asp-route-id="@item.PrescriptionId">Delete</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

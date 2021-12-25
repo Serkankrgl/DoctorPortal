@@ -14,6 +14,7 @@ namespace DoctorPortal.Models
         public ApplicationUser User { get; set; }
         public int Age { get; set; }
         public int Length { get; set; }
+        //TODO: İnt yapılack
         public decimal Weight { get; set; }
         public ICollection<Prescription> Prescriptions { get; set; }
         public ICollection<Appointment> Appointments { get; set; }

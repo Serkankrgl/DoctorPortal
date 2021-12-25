@@ -25,23 +25,32 @@ namespace DoctorPortal.Controllers
             _context = context;
             _userManager = userManager;
         }
+        [HttpPost]
+        public async Task<IActionResult> UpdateProfile(Patient patient)
+        {
+            patient.PatientId = _userManager.GetUserId(User);
+            _context.Patients.Update(patient);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
         public IActionResult Index()
         {
-            return View();
+            Patient patient = _context.Patients.Where(x => x.PatientId == _userManager.GetUserId(User)).FirstOrDefault();
+            return View(patient);
         }
-
-        public async Task<IActionResult> CreateAppointment()
+        #region Appointment
+        public async Task<IActionResult> AppointmentPage()
+        {
+            List<Appointment> appointments = await _context.Appointments.Include(x => x.Doctor.User)
+                                                                        .Include(x => x.Patient.User)
+                                                                        .Where(x => x.PatientId == _userManager.GetUserAsync(User).GetAwaiter().GetResult().Id).ToListAsync();
+            return View(appointments);
+        }
+        public IActionResult CreateAppointment()
         {
 
             //Doktor dropdownı için selectlist dolduruluyor.
-            List<Doctor> doctors = await _context.Doctors.Include(a => a.Speciality).Include(a => a.User).ToListAsync();
-            IEnumerable<SelectListItem> items = from value in doctors
-            select new SelectListItem
-            {
-                Value = value.DoctorId.ToString(),
-                Text = value.GetFulName(),
-            };
-            ViewBag.Doctors = items;
+            GetDocSelectList();
             return View();
         }
         [HttpPost]
@@ -56,11 +65,42 @@ namespace DoctorPortal.Controllers
                 model.Doctor = _context.Doctors.Where(x => x.DoctorId == model.DoctorId).FirstOrDefault();
                 _context.Add(model);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(AppointmentPage));
             }
-            return View();
+            GetDocSelectList();
+            return View(model);
         }
 
+        public async Task<IActionResult> DeleteAppointment(int id)
+        {
+            Appointment appointment = _context.Appointments.Where(x => x.AppointmentId == id).FirstOrDefault();
+
+            _context.Appointments.Remove(appointment);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(AppointmentPage));
+        }
+
+        void GetDocSelectList()
+        {
+            List<Doctor> doctors =  _context.Doctors.Include(a => a.Speciality).Include(a => a.User).ToList();
+            IEnumerable<SelectListItem> items = from value in doctors
+                                                select new SelectListItem
+                                                {
+                                                    Value = value.DoctorId.ToString(),
+                                                    Text = value.GetFulName(),
+                                                };
+            ViewBag.Doctors = items;
+        }
+        #endregion
+        #region Prescription
+        public async Task<IActionResult> PrescriptionPage()
+        {
+            List<Prescription> prescriptions = await _context.Prescriptions.Include(x => x.Doctor.User)
+                                                                        .Include(x => x.Patient.User)
+                                                                        .Where(x => x.PatientId == _userManager.GetUserAsync(User).GetAwaiter().GetResult().Id).ToListAsync();
+            return View(prescriptions);
+        }
+        #endregion
 
     }
 }

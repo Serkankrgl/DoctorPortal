@@ -45,19 +45,19 @@
     if (User.IsInRole("Patient"))
     {
         <li class="active ">
-            <a asp-area="Patient" asp-controller="Profile" asp-action="Index">
+            <a asp-area="" asp-controller="Patient" asp-action="Index">
                 <i class="far fa-user"></i>
                 <p>Profil</p>
             </a>
         </li>
         <li>
-            <a asp-area="" asp-controller="Patient" asp-action="CreateAppointment">
+            <a asp-area="" asp-controller="Patient" asp-action="AppointmentPage">
                 <i class="far fa-calendar-check"></i>
                 <p>Randevular</p>
             </a>
         </li>
         <li>
-            <a href="./map.html">
+            <a asp-area="" asp-controller="Patient" asp-action="PrescriptionPage">
                 <i class="fas fa-prescription-bottle"></i>
                 <p>Reçeteler</p>
             </a>
@@ -67,19 +67,19 @@
     if (User.IsInRole("Doctor"))
     {
         <li class="active ">
-            <a asp-area="Doctor" asp-controller="Profile" asp-action="Index">
+            <a asp-area="Doctor" asp-controller="" asp-action="">
                 <i class="far fa-user"></i>
                 <p>Profil</p>
             </a>
         </li>
         <li>
-            <a href="./icons.html">
+            <a asp-area="" asp-controller="Doctor" asp-action="AppointmentPage">
                 <i class="far fa-calendar-check"></i>
                 <p>Randevular</p>
             </a>
         </li>
         <li>
-            <a href="./map.html">
+            <a asp-area="" asp-controller="Doctor" asp-action="PrescriptionPage">
                 <i class="fas fa-prescription-bottle"></i>
                 <p>Reçeteler</p>
             </a>

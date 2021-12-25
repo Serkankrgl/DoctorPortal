@@ -1,0 +1,35 @@
+﻿@model DoctorPortal.Models.Prescription
+@{
+    ViewData["Title"] = "EditPrescription";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>EditPrescription</h1>
+
+<div class="row mx-0">
+    <div class="col-md-4">
+        <form asp-action="CreatePrescription">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="PrescriptionContent" class="control-label"></label>
+                <textarea asp-for="PrescriptionContent" class="form-control"></textarea>
+                <span asp-validation-for="PrescriptionContent" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EffOutDate" class="control-label"></label>
+                <input asp-for="EffOutDate" class="form-control" />
+                <span asp-validation-for="EffOutDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
