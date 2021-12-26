@@ -1,4 +1,30 @@
-﻿
+﻿@using Microsoft.AspNetCore.Builder
+@using Microsoft.Extensions.Options
+@using System.Globalization
+@inject IOptions<RequestLocalizationOptions> LocOps
+@{
+    var requestCulture = CultureInfo.CurrentCulture;
+
+    var supportedCultures = LocOps.Value.SupportedUICultures
+
+        .Select(c => new SelectListItem
+        {
+            Value = $"{c.Name}",
+            Text = $"{c.DisplayName}"
+        }).ToList();
+
+    var routeData = new Dictionary<string, string>();
+
+    foreach (var r in ViewContext.RouteData.Values)
+    {
+        routeData.Add(r.Key, r.Value.ToString());
+    }
+
+    foreach (var qs in Context.Request.Query)
+    {
+        routeData.Add(qs.Key, qs.Value);
+    }
+}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,15 +54,9 @@
             </div>
             <div class="sidebar-wrapper" id="sidebar-wrapper">
                 <ul class="nav">
-                    
-                    <partial name="_LoginPartial" />
-                    <li>
 
-                        <a asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                            <i class="fas fa-sign-out-alt"></i>
-                            <p>Çıkış Yap</p>
-                        </a>
-                    </li>
+                    <partial name="_LoginPartial" />
+
                 </ul>
             </div>
         </div>
@@ -53,7 +73,29 @@
                         </button>
                     </div>
                 </div>
+                <div class="collapse navbar-collapse justify-content-end" id="navigation">
+                    <ul class="navbar-nav">
+                        @foreach (var culture in supportedCultures)
+                        {
+                            if (culture.Value.ToLower() != requestCulture.Name.ToLower())
+                            {
+                                // replace {culture} value with the one from the list
+                                routeData["culture"] = culture.Value;
 
+                                <li class="nav-item">
+                                    <a class="dropdown-item"
+                                       asp-all-route-data="@routeData">
+                                        @culture.Text
+                                    </a>
+                                </li>
+                                
+                            }
+                        }
+
+                    </ul>
+                        
+
+                </div>
             </nav>
             <!-- End Navbar -->
             <div class="" style="background-color:snow">

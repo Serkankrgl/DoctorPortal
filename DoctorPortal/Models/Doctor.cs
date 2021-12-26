@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
@@ -12,6 +14,8 @@ namespace DoctorPortal.Models
         public string DoctorId { get; set; }
         [ForeignKey("DoctorId")]
         public ApplicationUser User { get; set; }
+        [DisplayName("SpecialityDisplay")]
+        [Required(ErrorMessage = "{0} is required!")]
         public int SpecialityId { get; set; }
         [ForeignKey("SpecialityId")]
         public Speciality Speciality { get; set; }

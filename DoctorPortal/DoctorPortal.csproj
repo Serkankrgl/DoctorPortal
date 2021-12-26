@@ -42,6 +42,7 @@
   <ItemGroup>
     <Folder Include="Areas\Admin\" />
     <Folder Include="Migrations\ApplicationDb\" />
+    <Folder Include="Resources\Models\" />
   </ItemGroup>
 
 </Project>

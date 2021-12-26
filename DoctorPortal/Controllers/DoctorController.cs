@@ -4,10 +4,12 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Localization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 
 namespace DoctorPortal.Controllers
 {
@@ -15,13 +17,16 @@ namespace DoctorPortal.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
-        private readonly ApplicationUser _user;
+        private readonly IStringLocalizer<DoctorController> _stringLocalizer;
         public DoctorController( ApplicationDbContext context,
-                                  UserManager<ApplicationUser> userManager)
+                                  UserManager<ApplicationUser> userManager,
+                                  IStringLocalizer<DoctorController> stringLocalizer)
         {
             _context = context;
             _userManager = userManager;
-            
+            _stringLocalizer = stringLocalizer;
+
+
 
         }
         public IActionResult Index()
@@ -90,14 +95,23 @@ namespace DoctorPortal.Controllers
         [HttpPost]
         public async Task<IActionResult> CreatePrescription(Prescription prescription)
         {
+
             if (ModelState.IsValid)
             {
                 //prescription.Doctor = _context.Doctors.Where(x => x.DoctorId == _user.Id).FirstOrDefault();
-                prescription.DoctorId =  _userManager.GetUserAsync(User).GetAwaiter().GetResult().Id;
                 _context.Add(prescription);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(PrescriptionPage));
             }
+            List<Patient> patients = await _context.Patients.Include(x => x.User).ToListAsync();
+            IEnumerable<SelectListItem> items = from value in patients
+                                                select new SelectListItem
+                                                {
+                                                    Value = value.PatientId.ToString(),
+                                                    Text = value.User.GetFulName(),
+                                                };
+
+            ViewBag.Patients = items;
             return View(prescription);
         }
         #endregion
@@ -111,11 +125,11 @@ namespace DoctorPortal.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> EditPrescription(Prescription prescription)
+        public async Task<IActionResult> EditPrescription(int id,[Bind("PrescriptionId,PrescriptionContent,EffOutDate,PatientId,DoctorId")] Prescription prescription)
         {
             if (ModelState.IsValid)
             {
-                _context.Update(prescription);
+                _context.Prescriptions.Update(prescription);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(PrescriptionPage));
             }

@@ -1,6 +1,7 @@
 ﻿using DoctorPortal.Data;
 using DoctorPortal.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -35,7 +36,7 @@ namespace DoctorPortal.Controllers
         }
         public IActionResult Index()
         {
-            Patient patient = _context.Patients.Where(x => x.PatientId == _userManager.GetUserId(User)).FirstOrDefault();
+            Patient patient = _context.Patients.Where(x => x.PatientId == HttpContext.Session.GetString("Userid")).Include(x=>x.User).FirstOrDefault();
             return View(patient);
         }
         #region Appointment
@@ -58,11 +59,8 @@ namespace DoctorPortal.Controllers
         {
             if (ModelState.IsValid)
             {
-                ApplicationUser user = await _userManager.GetUserAsync(User);
-                model.PatientId = user.Id;
-                model.Patient = _context.Patients.Where(x => x.PatientId == user.Id).FirstOrDefault();
+                
                 model.Status = "0";
-                model.Doctor = _context.Doctors.Where(x => x.DoctorId == model.DoctorId).FirstOrDefault();
                 _context.Add(model);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(AppointmentPage));
@@ -96,6 +94,7 @@ namespace DoctorPortal.Controllers
         public async Task<IActionResult> PrescriptionPage()
         {
             List<Prescription> prescriptions = await _context.Prescriptions.Include(x => x.Doctor.User)
+                                                                            .Include(x=>x.Doctor.Speciality)
                                                                         .Include(x => x.Patient.User)
                                                                         .Where(x => x.PatientId == _userManager.GetUserAsync(User).GetAwaiter().GetResult().Id).ToListAsync();
             return View(prescriptions);
