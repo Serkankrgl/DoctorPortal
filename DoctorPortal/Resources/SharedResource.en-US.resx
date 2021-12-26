@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AddComment" xml:space="preserve">
+    <value>Add Comment</value>
+  </data>
+  <data name="Appointment" xml:space="preserve">
+    <value>Appointment</value>
+  </data>
   <data name="Approve" xml:space="preserve">
     <value>Approve</value>
   </data>
@@ -138,6 +144,9 @@
   <data name="Delete" xml:space="preserve">
     <value>Delete</value>
   </data>
+  <data name="Details" xml:space="preserve">
+    <value>Details</value>
+  </data>
   <data name="E" xml:space="preserve">
     <value>Male</value>
   </data>
@@ -147,16 +156,31 @@
   <data name="K" xml:space="preserve">
     <value>Female</value>
   </data>
+  <data name="LogoutClick" xml:space="preserve">
+    <value>Click Here to Log Out</value>
+  </data>
+  <data name="LogoutText" xml:space="preserve">
+    <value>Log Out</value>
+  </data>
   <data name="Operations" xml:space="preserve">
     <value>Operations</value>
   </data>
   <data name="Pending" xml:space="preserve">
     <value>Pending</value>
   </data>
+  <data name="Prescription" xml:space="preserve">
+    <value>Prescriptions</value>
+  </data>
+  <data name="Profile" xml:space="preserve">
+    <value>Profile</value>
+  </data>
   <data name="Reject" xml:space="preserve">
     <value>Reject</value>
   </data>
   <data name="Rejected" xml:space="preserve">
     <value>Rejected</value>
+  </data>
+  <data name="RemoveComment" xml:space="preserve">
+    <value>Remove Comment</value>
   </data>
 </root>

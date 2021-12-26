@@ -123,6 +123,9 @@
   <data name="AppointmentDateDisplay" xml:space="preserve">
     <value>Randevu Tarihi</value>
   </data>
+  <data name="CommentDisplay" xml:space="preserve">
+    <value>Yorum</value>
+  </data>
   <data name="DescriptionDisplay" xml:space="preserve">
     <value>Açıklama</value>
   </data>
@@ -144,6 +147,9 @@
   <data name="PatientDisplay" xml:space="preserve">
     <value>Hasta Adı Soyadı</value>
   </data>
+  <data name="PostContentDisplay" xml:space="preserve">
+    <value>Mesajınız</value>
+  </data>
   <data name="PrescriptionContentDisplay" xml:space="preserve">
     <value>Reçete İçeriği</value>
   </data>
@@ -152,6 +158,9 @@
   </data>
   <data name="StatusDisplay" xml:space="preserve">
     <value>Durum</value>
+  </data>
+  <data name="UserDisplay" xml:space="preserve">
+    <value> Kullanıcı Adı Soyadı</value>
   </data>
   <data name="WeightDisplay" xml:space="preserve">
     <value>Kilo</value>

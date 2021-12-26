@@ -1,6 +1,8 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
+@using Microsoft.Extensions.Localization;
+@inject IStringLocalizer<SharedResource> localizer;
 @{
     ApplicationUser myUser = (await UserManager.GetUserAsync(User));
 
@@ -11,30 +13,8 @@
 
     if (User.IsInRole("Admin"))
     {
-        <li class="">
-            <a asp-area="Patient" asp-controller="Profile" asp-action="Index">
-                <i class="far fa-user"></i>
-                <p>Profil</p>
-            </a>
-        </li>
-        <li>
-            <a href="./icons.html">
-                <i class="far fa-calendar-check"></i>
-                <p>Randevular</p>
-            </a>
-        </li>
-        <li>
-            <a href="./map.html">
-                <i class="fas fa-prescription-bottle"></i>
-                <p>Reçeteler</p>
-            </a>
-        </li>
-        <li>
-            <a asp-area="Identity" asp-page="/Views/Manage/Index" title="Manage">
-                <i class="fas fa-users-cog"></i>
-                <p>Admin Paneli</p>
-            </a>
-        </li>
+
+
         <li>
             <a asp-area="" asp-controller="Admin" asp-action="CreateSpeciality">
                 <i class="fas fa-prescription-bottle"></i>
@@ -44,7 +24,7 @@
         <li>
             <a asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
                 <i class="fas fa-sign-out-alt"></i>
-                <p>Çıkış Yap</p>
+                <p>@localizer["LogoutText"]</p>
             </a>
         </li>
     }
@@ -53,26 +33,26 @@
         <li class="">
             <a asp-area="" asp-controller="Patient" asp-action="Index">
                 <i class="far fa-user"></i>
-                <p>Profil</p>
+                <p>@localizer["Profile"]</p>
             </a>
         </li>
         <li>
             <a asp-area="" asp-controller="Patient" asp-action="AppointmentPage">
                 <i class="far fa-calendar-check"></i>
-                <p>Randevular</p>
+                <p>@localizer["Appointment"]</p>
             </a>
         </li>
         <li>
             <a asp-area="" asp-controller="Patient" asp-action="PrescriptionPage">
                 <i class="fas fa-prescription-bottle"></i>
-                <p>Reçeteler</p>
+                <p>@localizer["Prescription"]</p>
             </a>
         </li>
         <li>
 
             <a asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
                 <i class="fas fa-sign-out-alt"></i>
-                <p>Çıkış Yap</p>
+                <p>@localizer["LogoutText"]</p>
             </a>
         </li>
 
@@ -82,7 +62,7 @@
         <li class="">
             <a asp-area="Doctor" asp-controller="" asp-action="">
                 <i class="far fa-user"></i>
-                <p>Profil</p>
+                <p>@localizer["Profile"]</p>
             </a>
         </li>
         <li>
@@ -101,7 +81,7 @@
 
             <a asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
                 <i class="fas fa-sign-out-alt"></i>
-                <p>Çıkış Yap</p>
+                <p>@localizer["LogoutText"]</p>
             </a>
         </li>
     }

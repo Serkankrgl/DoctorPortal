@@ -58,7 +58,7 @@ namespace DoctorPortal.Controllers
                 comment.Post = _context.Posts.Where(x => x.PostId == comment.PostId).FirstOrDefault();
                 _context.Add(comment);
                 await _context.SaveChangesAsync();
-                return View(nameof(Index));
+                return View("ShowPost", "Home");
             }
             return View();
         }
@@ -75,7 +75,7 @@ namespace DoctorPortal.Controllers
                 post.Patient = _context.Patients.Where(x => x.PatientId == user.Id).FirstOrDefault();
                 _context.Add(post);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(ShowPost));
+                return RedirectToAction("ShowPost", "Home");
             }
             else
             {
@@ -83,26 +83,9 @@ namespace DoctorPortal.Controllers
             }
         }
 
-        public IActionResult ShowPost()
-        {
-            SetViewBag();
-            return View();
-        }
+        
 
-        [HttpPost]
-        public async Task<IActionResult> ShowPostDetail(Comment comment)
-        {
-            if (ModelState.IsValid)
-            {
-                ViewBag.Post = _context.Posts.Where(x => x.PostId == comment.PostId).FirstOrDefault();
-                ViewBag.Comments = _context.Comments.Where(x => x.PostId == comment.PostId).ToList();
-                return View();
-            }
-            else
-            {
-                return View(nameof(ShowPost));
-            }
-        }
+
 
 
         public void SetViewBag()
