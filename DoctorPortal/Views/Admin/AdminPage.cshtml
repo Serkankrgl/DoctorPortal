@@ -1,0 +1,36 @@
+﻿@model IEnumerable<DoctorPortal.Models.Speciality>
+@{
+    ViewData["Title"] = "AdminPage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container m-3">
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    ID
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SpecialityName)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var i in Model)
+            {
+                <tr>
+                    <td>@i.SpecialityId</td>
+                    <td>
+                        @i.SpecialityName
+                    </td>
+
+                </tr>
+            }
+
+        </tbody>
+    </table>
+
+</div>

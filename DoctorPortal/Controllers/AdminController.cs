@@ -49,5 +49,11 @@ namespace DoctorPortal.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction("ShowPostDetail","Home", new { id = postid });
         }
+
+        public async Task<IActionResult> AdminPage()
+        {
+            List<Speciality> specialities = _context.Specialities.ToList();
+            return View(specialities);
+        }
     }
 }
