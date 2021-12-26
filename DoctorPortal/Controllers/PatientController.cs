@@ -110,7 +110,6 @@ namespace DoctorPortal.Controllers
             ViewBag.UserName = _userManager.GetUserName(HttpContext.User);
             ViewBag.Specialities = _context.Specialities.ToList();
         }
-        public async Task<IActionResult> CreateAppointment()
 
         #region Appointment
         public async Task<IActionResult> AppointmentPage()
