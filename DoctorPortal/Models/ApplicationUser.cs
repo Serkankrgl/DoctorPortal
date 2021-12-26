@@ -32,5 +32,10 @@ namespace DoctorPortal.Models
 
         [Display(Name = "Doktor mu?")]
         public string TC { get; set; }
+
+        public string GetFulName()
+        {
+            return Name.ToString() + " " + Surname.ToString();
+        }
     }
 }
