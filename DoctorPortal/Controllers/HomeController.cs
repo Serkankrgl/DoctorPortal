@@ -1,5 +1,6 @@
 ﻿using DoctorPortal.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -9,7 +10,8 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace DoctorPortal.Controllers
-{   [Authorize]
+{   
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -36,5 +38,8 @@ namespace DoctorPortal.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+    
+
+    
     }
 }
