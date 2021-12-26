@@ -1,35 +1,44 @@
 ﻿@model DoctorPortal.Models.Prescription
+@using Microsoft.AspNetCore.Http
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+@using Microsoft.Extensions.Localization;
+@inject IStringLocalizer<SharedResource> localizer;
 @{
     ViewData["Title"] = "EditPrescription";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>EditPrescription</h1>
-
-<div class="row mx-0">
-    <div class="col-md-4">
-        <form asp-action="CreatePrescription">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="PrescriptionContent" class="control-label"></label>
-                <textarea asp-for="PrescriptionContent" class="form-control"></textarea>
-                <span asp-validation-for="PrescriptionContent" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="EffOutDate" class="control-label"></label>
-                <input asp-for="EffOutDate" class="form-control" />
-                <span asp-validation-for="EffOutDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+<div class="container m-3">
+    <div class="row mx-0">
+        <div class="col-md-12 my-2">
+            <form asp-action="EditPrescription">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input asp-for="PrescriptionId" type="hidden"/>
+                <div class="form-group">
+                    <label asp-for="PrescriptionContent" class="control-label"></label>
+                    <textarea asp-for="PrescriptionContent" class="form-control"></textarea>
+                    <span asp-validation-for="PrescriptionContent" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="EffOutDate" class="control-label"></label>
+                    <input asp-for="EffOutDate" class="form-control" />
+                    <span asp-validation-for="EffOutDate" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input asp-for="DoctorId" class="form-control" value="@HttpContextAccessor.HttpContext.Session.GetString("Userid")" type="hidden" />
+                </div>
+                <div class="form-group">
+                    <input asp-for="PatientId" class="form-control" type="hidden" />
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="@localizer["Edit"]" class="btn btn-primary" />
+                    <a asp-action="PrescriptionPage" class="btn btn-primary">@localizer["Back"]</a>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

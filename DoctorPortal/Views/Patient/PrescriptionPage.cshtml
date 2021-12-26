@@ -1,38 +1,31 @@
-﻿@model List<DoctorPortal.Models.Prescription>
+﻿@model IEnumerable<DoctorPortal.Models.Prescription>
 @{
     ViewData["Title"] = "PrescriptionPage";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>PrescriptionPage</h1>
 
+<div class="container">
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>Doktor Adı</th>
-            <th>Uzmanlık Alanı</th>
-            <th>Reçete İçeriği</th>
-            <th>Reçete Geçerlilik bitiş Tarihi</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-        <tr>
-            <td>
-                @item.Doctor.User.GetFulName()
-            </td>
-            <td>
-                @item.Doctor.Speciality.SpecialityName
-            </td>
-            <td>
-                @item.PrescriptionContent
-            </td>
-            <td>
-                @item.EffOutDate
-            </td>
-        </tr>
-        }
-    </tbody>
-</table>
+    @foreach (var item in Model)
+    {
+
+        <div class="card my-4">
+            <div class="card-header">
+                <h5 class="card-category">
+                    @Html.DisplayNameFor(model => model.EffOutDate): @item.EffOutDate.ToShortDateString()
+                </h5>
+                <h4 class="card-title">
+                    @item.Doctor.User.GetFulName()
+                </h4>
+                <small> @Html.DisplayNameFor(model => model.Doctor.SpecialityId): @item.Doctor.Speciality.SpecialityName</small>
+            </div>
+            <div class="card-body">
+                <p><b>@Html.DisplayNameFor(model => model.PrescriptionContent)</b></p>
+                <p>@item.PrescriptionContent</p>
+
+            </div>
+        </div>
+
+    }
+</div>

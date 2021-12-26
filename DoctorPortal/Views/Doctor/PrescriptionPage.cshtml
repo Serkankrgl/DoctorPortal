@@ -1,40 +1,41 @@
-﻿@model List<DoctorPortal.Models.Prescription>
+﻿@model IEnumerable<DoctorPortal.Models.Prescription>
+@using Microsoft.Extensions.Localization;
+@inject IStringLocalizer<SharedResource> localizer; 
 @{
     ViewData["Title"] = "PrescriptionPage";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>PrescriptionPage</h1>
 
-<p>
-    <a asp-action="CreatePrescription">Reçete oluştur.</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>Hasta Adı</th>
-            <th>Reçete İçeriği</th>
-            <th>Reçete Geçerlilik bitiş Tarihi</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-        <tr>
-            <td>
-                @item.Patient.User.GetFulName()
-            </td>
-            <td>
-                @item.PrescriptionContent
-            </td>
-            <td>
-                @item.EffOutDate
-            </td>
-            <td>
-                <a asp-action="EditPrescription" asp-route-id="@item.PrescriptionId">Edit</a> | 
-                <a asp-action="DeletePrescription" asp-route-id="@item.PrescriptionId">Delete</a>
-            </td>
-        </tr>
-        }
-    </tbody>
-</table>
+
+<div class="container">
+    <p>
+      <a asp-action="CreatePrescription" class="btn btn-primary w-100">@localizer["Create"]</a>
+    </p>
+
+    @foreach (var item in Model)
+    {
+
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-category">
+                    @Html.DisplayNameFor(model => model.EffOutDate): @item.EffOutDate.ToShortDateString()
+                </h5>
+                <h4 class="card-title">
+                    @item.Patient.User.GetFulName()
+                </h4>
+            </div>
+            <div class="card-body">
+                <p>@item.PrescriptionContent</p>
+             
+                    <div class="justify-content-end">
+                        <a asp-action="EditPrescription" asp-route-id="@item.PrescriptionId" class="btn btn-primary">@localizer["Edit"]</a> 
+                        <a asp-action="DeletePrescription" asp-route-id="@item.PrescriptionId" class="btn btn-primary">@localizer["Delete"]</a>
+                    </div>
+
+            </div>
+        </div>
+
+    }
+</div>
+

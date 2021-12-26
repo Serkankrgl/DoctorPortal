@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -13,24 +14,24 @@ namespace DoctorPortal.Models
     {
         [PersonalData]
         [Column(TypeName ="nvarchar(100)")]
-        [Display(Name = "İsim")]
+        [DisplayName("Name")]
         public string Name { get; set; }
         [PersonalData]
         [Column(TypeName = "nvarchar(100)")]
-        [Display(Name = "Soyisim")]
+        [DisplayName ( "Surname")]
         public string Surname { get; set; }
         [PersonalData]
         [Column(TypeName = "nvarchar(100)")]
-        [Display(Name = "Cinsiyet")]
+        [DisplayName ( "GenderDisplay")]
         public string Gender { get; set; }
         [PersonalData]
         [Column(TypeName = "nvarchar(5)")]
-        [Display(Name = "Doktor mu?")]
+        [DisplayName( "IsDoctor")]
         public string IsDoctor { get; set; }
         [PersonalData]
         [Column(TypeName = "nvarchar(11)")]
 
-        [Display(Name = "Doktor mu?")]
+        [DisplayName ( "TC")]
         public string TC { get; set; }
 
         public string GetFulName()

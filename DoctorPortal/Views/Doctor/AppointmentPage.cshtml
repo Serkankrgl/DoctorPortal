@@ -1,67 +1,70 @@
-﻿@model List<DoctorPortal.Models.Appointment>
+﻿@model IEnumerable<DoctorPortal.Models.Appointment>
+@using Microsoft.Extensions.Localization;
+@inject IStringLocalizer<SharedResource> localizer;
 @{
     ViewData["Title"] = "ApproveAppointment";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div></div>
+<div class="container h-100">
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                Hasta Adı Soyadı
-            </th>
-            <th>
-                Şikayeti
-            </th>
-            <th>
-                Tarih
-            </th>
-            <th>
-                Randevu Durumu
-            </th>
-            <th>
-                İşlemler
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var i in Model)
-        {
+    <table class="table">
+        <thead>
             <tr>
-                <td>
-                    @i.Patient.User.GetFulName()
-                </td>
-                <td>
-                    @i.Description
-                </td>
-                <td>
-                    @i.AppointmentDate
-                </td>
-                <td>
-                    @if (i.Status == "0")
-                    {
-                        <span>Onayda</span>
-                    }
-                    @if (i.Status == "1")
-                    {
-                        <span>Onaylandı</span>
-                    }
-                    @if (i.Status == "2")
-                    {
-                        <span>Reddedildi</span>
-                    }
-                </td>
-                <td>
-                    @if (i.Status == "0")
-                    {
-                        <a asp-action="ApproveAppointment" asp-route-id="@i.AppointmentId">Onayla</a>
-                        <span>|</span>
-                        <a asp-action="RejectAppointment" asp-route-id="@i.AppointmentId">Reddet</a>
-                    }
-                </td>
+                <th>
+                    @Html.DisplayNameFor(model => model.PatientId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AppointmentDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Status)
+                </th>
+                <th>
+                    @localizer["Operations"]
+                </th>
             </tr>
-        }
+        </thead>
+        <tbody>
+            @foreach (var i in Model)
+            {
+                <tr>
+                    <td>
+                        @i.Patient.User.GetFulName()
+                    </td>
+                    <td>
+                        @i.Description
+                    </td>
+                    <td>
+                        @i.AppointmentDate
+                    </td>
+                    <td>
+                        @if (i.Status == "0")
+                        {
+                        <span>@localizer["Pending"]</span>
+                        }
+                        @if (i.Status == "1")
+                        {
+                    <span>@localizer["Approved"]</span>
+                        }
+                        @if (i.Status == "2")
+                        {
+                    <span>@localizer["Rejected"]</span>
+                        }
+                    </td>
+                    <td>
+                        @if (i.Status == "0")
+                        {
+                        <a asp-action="ApproveAppointment" asp-route-id="@i.AppointmentId">@localizer["Approve"]</a>
+                            <span>|</span>
+                            <a asp-action="RejectAppointment" asp-route-id="@i.AppointmentId">@localizer["Reject"]</a>
+                        }
+                    </td>
+                </tr>
+            }
 
-    </tbody>
-</table>
+        </tbody>
+    </table>
+</div>
