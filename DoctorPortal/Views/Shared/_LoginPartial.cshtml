@@ -64,12 +64,7 @@
     }
     if (User.IsInRole("Doctor"))
     {
-        <li class="">
-            <a asp-area="Doctor" asp-controller="" asp-action="">
-                <i class="far fa-user"></i>
-                <p>@localizer["Profile"]</p>
-            </a>
-        </li>
+
         <li>
             <a asp-area="" asp-controller="Doctor" asp-action="AppointmentPage">
                 <i class="far fa-calendar-check"></i>

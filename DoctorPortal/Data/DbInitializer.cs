@@ -145,7 +145,27 @@ namespace DoctorPortal.Data
                 PatientId = patient.Id,
                 DoctorId = doctor.Id,
                 AppointmentDate = DateTime.Today,
-                Status = "Pending",
+                Status = "0",
+                Description = "Testing System",
+                DenyReason = "None",
+            });
+
+            _db.Appointments.Add(new Appointment()
+            {
+                PatientId = patient.Id,
+                DoctorId = doctor.Id,
+                AppointmentDate = DateTime.Today,
+                Status = "1",
+                Description = "Testing System",
+                DenyReason = "None",
+            });
+
+            _db.Appointments.Add(new Appointment()
+            {
+                PatientId = patient.Id,
+                DoctorId = doctor.Id,
+                AppointmentDate = DateTime.Today,
+                Status = "2",
                 Description = "Testing System",
                 DenyReason = "None",
             });
