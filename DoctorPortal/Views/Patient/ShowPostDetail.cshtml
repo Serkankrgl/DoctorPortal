@@ -1,0 +1,30 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+<div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label>Post</label>
+                <textarea rows="4" cols="80" class="form-control" placeholder="Here can be your post" value="@ViewBag.Post.PostContent" disabled>@ViewBag.Post.PostContent</textarea>
+            </div>
+            <div class="form-group">
+                <label>User</label>
+                <input class="form-control" value="@ViewBag.Post.PatientId" disabled />
+            </div>
+            <div>
+                @foreach (var comment in ViewBag.Comments)
+                {
+                    <hr />
+                    <label>Comment</label>
+                    <input class="form-control" disabled value="@comment.CommentContent" />
+                    <div class="form-group">
+                        <label>User</label>
+                        <input class="form-control" value="@comment.UserId" disabled />
+                    </div>
+                }
+            </div>
+        </div>
+
+    </div>
+</div>

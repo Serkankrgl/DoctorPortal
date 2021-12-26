@@ -13,7 +13,8 @@ using System.Threading;
 using System.Threading.Tasks;
 
 namespace DoctorPortal.Controllers
-{   [Authorize]
+{   
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -50,20 +51,5 @@ namespace DoctorPortal.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-
-        public IActionResult LangTR() {
-            var cultureInfo =  CultureInfo.GetCultureInfo("tr-TR");
-            Thread.CurrentThread.CurrentCulture = cultureInfo;
-            Thread.CurrentThread.CurrentUICulture = cultureInfo;
-            return LocalRedirect(Url.Content("~/"));
-        }
-
-        public IActionResult LangEN()
-        {
-            var cultureInfo = CultureInfo.GetCultureInfo("en-US");
-            Thread.CurrentThread.CurrentCulture = cultureInfo;
-            Thread.CurrentThread.CurrentUICulture = cultureInfo;
-            return LocalRedirect(Url.Content("~/"));
-        }
     }
 }
