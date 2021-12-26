@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AddComment" xml:space="preserve">
+    <value>Yorum Ekle</value>
+  </data>
+  <data name="Appointment" xml:space="preserve">
+    <value>Randevular</value>
+  </data>
   <data name="Approve" xml:space="preserve">
     <value>Onay</value>
   </data>
@@ -138,6 +144,9 @@
   <data name="Delete" xml:space="preserve">
     <value>Sil</value>
   </data>
+  <data name="Details" xml:space="preserve">
+    <value>Detaylar</value>
+  </data>
   <data name="E" xml:space="preserve">
     <value>Erkek</value>
   </data>
@@ -147,16 +156,31 @@
   <data name="K" xml:space="preserve">
     <value>Kadın</value>
   </data>
+  <data name="LogoutClick" xml:space="preserve">
+    <value>Çıkış Ypamak İçin Tıklayınız</value>
+  </data>
+  <data name="LogoutText" xml:space="preserve">
+    <value>Çıkış Yap</value>
+  </data>
   <data name="Operations" xml:space="preserve">
     <value>İşlemler</value>
   </data>
   <data name="Pending" xml:space="preserve">
     <value>Onayda</value>
   </data>
+  <data name="Prescription" xml:space="preserve">
+    <value>Reçeteler</value>
+  </data>
+  <data name="Profile" xml:space="preserve">
+    <value>Profil</value>
+  </data>
   <data name="Reject" xml:space="preserve">
     <value>Red</value>
   </data>
   <data name="Rejected" xml:space="preserve">
     <value>Reddedildi</value>
+  </data>
+  <data name="RemoveComment" xml:space="preserve">
+    <value>Yorum Kaldır</value>
   </data>
 </root>

@@ -1,0 +1,46 @@
+﻿@model DoctorPortal.Models.Post
+@{
+    ViewData["Title"] = "ShowPostDetail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using Microsoft.Extensions.Localization;
+@inject IStringLocalizer<SharedResource> localizer;
+<div class="container ">
+    <div class="row mx-0">
+        <div class="col-md-12  my-2">
+
+
+            <div class="form-group">
+                <label asp-for="PostContent"></label>
+                <textarea asp-for="PostContent" class="form-control" disabled></textarea>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="PatientId"></label>
+                <input asp-for="PatientId" class="form-control" value="@Model.Patient.User.GetFulName()" disabled />
+            </div>
+            <div class="form-group">
+                <label asp-for="SpecialityId"></label>
+                <input asp-for="Speciality.SpecialityName" class="form-control" value="@Model.Speciality.SpecialityName" disabled />
+            </div>
+            <div>
+                @foreach (var comment in Model.Comments)
+                {
+                    <hr />
+                    <div class="form-group">
+                        <label asp-for="Comments.First().CommentContent"></label>
+                        <input asp-for="Comments.First().CommentContent" class="form-control" value="@comment.CommentContent" disabled />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Comments.First().UserId"></label>
+                        <input asp-for="Comments.First().UserId" class="form-control" value="@comment.User.GetFulName()" disabled />
+                    </div>@if (User.IsInRole("Admin"))
+                    {
+                        <a asp-action="DeleteComment" asp-controller="Admin" asp-route-id="@comment.CommentId;@comment.PostId" class="btn btn-primary">@localizer["RemoveComment"]</a>
+                    }
+                }
+            </div>
+        </div>
+
+    </div>
+</div>

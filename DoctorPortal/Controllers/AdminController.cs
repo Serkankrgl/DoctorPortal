@@ -38,5 +38,16 @@ namespace DoctorPortal.Controllers
 
             return View(model);
         }
+
+        public async Task<IActionResult> DeleteComment(string id)
+        {
+            string[] list = id.Split(";");
+            int commnetid = Convert.ToInt32(list[0]);
+            int postid = Convert.ToInt32(list[1]);
+            Comment comment = _context.Comments.Where(x => x.CommentId == commnetid).FirstOrDefault();
+            _context.Comments.Remove(comment);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("ShowPostDetail","Home", new { id = postid });
+        }
     }
 }
